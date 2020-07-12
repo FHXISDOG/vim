@@ -10,6 +10,8 @@ set nobomb
 set backspace=indent,eol,start whichwrap+=<,>,[,]
 " Vim 的默认寄存器和系统剪贴板共享
 set clipboard+=unnamed
+" 设置隐藏而不是 分割窗口
+set hidden
 " 设置 alt 键不映射到菜单栏
 " }}}
 
@@ -61,6 +63,12 @@ set statusline+=%l/%L
 set statusline+=[%p%%]
 set statusline+=\ -\      " Separator
 set statusline +=%1*\ %y\ %*
+" gui打开默认最大化
+if has("gui_running")
+  " GUI is running or is about to start.
+  " Maximize gvim window (for an alternative on Windows, see simalt below).
+    simalt ~x
+endif
 " }}}
 
 " Format {{{
@@ -71,5 +79,39 @@ set expandtab
 set softtabstop=4
 set foldmethod=indent
 syntax on
+" }}}
+
+" {{{
+" leader 键设置
+let mapleader = ","
+" }}}
+
+" key map {{{
+
+" comand line key map 
+cnoremap <C-e> <END>
+cnoremap <C-a> <HOME>
+cnoremap <C-f> <Right>
+cnoremap <C-b> <Left>
+cnoremap <C-n> <Down>
+cnoremap <C-p> <Up>
+cnoremap <M-f> <S-Right>
+cnoremap <M-b> <S-Left>
+cnoremap <C-k> <C-\>estrpart(getcmdline(),0,getcmdpos()-1)<CR>
+cnoremap <C-y> <C-r>+
+" insert mode key map
+inoremap <C-e> <END>
+inoremap <C-a> <HOME>
+inoremap <C-f> <Right>
+inoremap <C-b> <Left>
+inoremap <C-n> <Down>
+inoremap <C-p> <Up>
+inoremap <M-f> <S-Right>
+inoremap <M-b> <S-Left>
+inoremap <C-k> <ESC>d$i
+" }}}
+
+" global variable {{{
+let g:vim_config_path="~/_vimrc"
 " }}}
 

@@ -11,11 +11,13 @@ augroup ft_vim
 augroup END
 " }}}
 
-
+let g:python3_host_prog = 'C:/Users/Finger/AppData/Local/Programs/Python/Python38-32/python.exe'
+set pythonthreehome=~/AppData/Local/Programs/Python/Python38-32/
+set pythonthreedll=~/AppData/Local/Programs/Python/Python38-32/python38.dll
 " orhter config {{{
 source ~/vimfiles/custom-config/basic-config.vim
-source ~/vimfiles/custom-config/vim-plug.vim
 source ~/vimfiles/custom-config/plug-config.vim
+source ~/vimfiles/custom-config/custom-config.vim
 " }}}
 
 
