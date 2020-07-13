@@ -7,6 +7,10 @@ set history=1024
 set autochdir
 set whichwrap=b,s,<,>,[,]
 set nobomb
+" 去掉哔哔声
+set belloff=all
+set noerrorbells
+set t_vb=
 set backspace=indent,eol,start whichwrap+=<,>,[,]
 " Vim 的默认寄存器和系统剪贴板共享
 set clipboard+=unnamed
@@ -17,21 +21,23 @@ set hidden
 
 " Lang & Encoding {{{
 set fileencodings=utf-8,gbk2312,gbk,gb18030,cp936
-set encoding=utf-8
-set langmenu=zh_CN
+set encoding=UTF-8
+"set langmenu=zh_CN
 let $LANG = 'en_US.UTF-8'
 "language messages zh_CN.UTF-8
 " }}}
 
 " GUI {{{
 colorscheme monokai_pro
-source $VIMRUNTIME/delmenu.vim
-source $VIMRUNTIME/menu.vim
-syntax on 
+"source $VIMRUNTIME/delmenu.vim
+"source $VIMRUNTIME/menu.vim
+if !exists('g:syntax_on')
+	syntax enable
+endif
+"syntax on 
 set termguicolors
 set cursorline
 set hlsearch
-"set number
 set so=10
 set showmode
 " 窗口大小
@@ -48,26 +54,16 @@ set guioptions-=b
 " 使用内置 tab 样式而不是 gui
 set guioptions-=e
 set nolist
-set guifont=Source\ Code\ Pro:h12
-set guifontwide="思源黑体:h12"
+"set guifont=Source\ Code\ Pro:h12
+"set guifont=SauceCodePro\ Nerd\ Font:h12
+set guifont=CaskaydiaCove\ Nerd\ Font\ Mono:h11
+set guifontwide="思源黑体:h11"
 
-set statusline=%f
-set statusline+=%m
-set statusline+=\ %{fugitive#head()}
-set statusline+=%=
-set statusline+=%{''.(&fenc!=''?&fenc:&enc).''}
-set statusline+=/
-set statusline +=%{&ff}            "file format
-set statusline+=\ -\      " Separator
-set statusline+=%l/%L
-set statusline+=[%p%%]
-set statusline+=\ -\      " Separator
-set statusline +=%1*\ %y\ %*
 " gui打开默认最大化
 if has("gui_running")
   " GUI is running or is about to start.
   " Maximize gvim window (for an alternative on Windows, see simalt below).
-    simalt ~x
+    au GUIEnter * simalt ~x
 endif
 " }}}
 
@@ -78,16 +74,11 @@ set tabstop=4
 set expandtab
 set softtabstop=4
 set foldmethod=indent
-syntax on
-" }}}
-
-" {{{
-" leader 键设置
-let mapleader = ","
 " }}}
 
 " key map {{{
-
+" leader 键设置
+let mapleader = ","
 " comand line key map 
 cnoremap <C-e> <END>
 cnoremap <C-a> <HOME>
@@ -109,6 +100,12 @@ inoremap <C-p> <Up>
 inoremap <M-f> <S-Right>
 inoremap <M-b> <S-Left>
 inoremap <C-k> <ESC>d$i
+inoremap <C-d> <Del>
+" }}}
+
+" defautl behivear{{{
+" cd home dir when start
+cd ~
 " }}}
 
 " global variable {{{
