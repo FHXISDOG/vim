@@ -1,6 +1,6 @@
 {
   "languageserver": {
-    "go": {
+    "golang": {
       "command": "gopls",
       "rootPatterns": ["go.mod"],
       "trace.server": "verbose",
